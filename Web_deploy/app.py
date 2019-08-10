@@ -52,6 +52,7 @@ def upload_audio():
 	url = api_url + '/get_aeneas_result'
 	data = {'audio': tmp_audio_file, 'text': tmp_text_file}
 	try:
+		print('sending request to {}'.format(url))
 		r = requests.post(url, json=data)
 		if not r.ok:
 			return 'Aligning failed.'
