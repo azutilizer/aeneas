@@ -4,7 +4,6 @@ import json
 import datetime
 import base64
 from flask import Flask, render_template, request, json, url_for
-from aeneas_api import get_align
 
 app = Flask(__name__)
 UPLOAD_DIR = os.path.join('..', 'uploads')
