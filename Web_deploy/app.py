@@ -24,8 +24,10 @@ def upload_audio():
 	base64_text = request.form.get('text_data')
 
 	if base64_audio is None:
+		print('Audio is None.')
 		return 'Audio Uploading Error!'
 	if base64_text is None:
+		print('Text is None.')
 		return 'Text Uploading Error!'
 
 	encoded_data = base64_audio.split(',')[-1]
@@ -37,11 +39,14 @@ def upload_audio():
 	if len(text_buf) == 0 or len(audio_buf) == 0:
 		return "Fail"
 
-	tmp_audio_file = os.path.join(UPLOAD_DIR, 'upload_' + datetime.datetime.now().strftime("%Y%m%d%H%M%S") + '_.mp3')
-	tmp_text_file = os.path.join(UPLOAD_DIR, 'upload_' + datetime.datetime.now().strftime("%Y%m%d%H%M%S") + '_.txt')
+	tmp_audio_file = os.path.join(UPLOAD_DIR, 'upload_' + datetime.datetime.now().strftime("%Y%m%d%H%M%S") + '.mp3')
+	tmp_text_file = os.path.join(UPLOAD_DIR, 'upload_' + datetime.datetime.now().strftime("%Y%m%d%H%M%S") + '.txt')
 
+	print('writing audio file: {}'.format(tmp_audio_file))
 	with open(tmp_audio_file, 'wb') as f:
 		f.write(audio_buf)
+	
+	print('writing text file: {}'.format(tmp_text_file))
 	with open(tmp_text_file, 'wb') as f:
 		f.write(text_buf)
 
