@@ -53,12 +53,14 @@ a:hover {
     padding-left: 0;
 	display: none;
 }
-	.emotion.json-response-container {
-		width: 490px;
-		height: 560px;
-		float: inherit;
-		border: none;
-	}
+
+.emotion.json-response-container {
+	width: 490px;
+	height: 560px;
+	float: inherit;
+	border: none;
+}
+
 .copy-json-button {
 	position: absolute;
     top: 22px;
@@ -67,11 +69,13 @@ a:hover {
     background-color: #1175E3;
     border-radius: 0;
 }
-	.copy-json-button:hover {
-		background-color: #3178c5;
-		color: #FFF!important;
-		font-weight: normal;
-	}
+
+.copy-json-button:hover {
+	background-color: #3178c5;
+	color: #FFF!important;
+	font-weight: normal;
+}
+
 .json-title {
 	position: absolute;
 	top: 20px;
@@ -138,10 +142,6 @@ a:hover {
 	font-size: 18px;
 }
 
-.header > ul > li:hover {
-
-}
-
 .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus
 {
 	background:none;
@@ -156,4 +156,12 @@ ul>li {
 ul>li:hover, ul>li:focus, ul>li.selected {
     cursor: pointer;
     background-color: #38d;
+}
+
+.unread { 
+    color: white; 
+}
+
+.read { 
+    color: red; 
 }

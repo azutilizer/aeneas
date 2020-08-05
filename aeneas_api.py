@@ -12,14 +12,24 @@ import aeneas.globalconstants as gc
 
 # create Task object
 config = TaskConfiguration()
-config[gc.PPN_TASK_LANGUAGE] = Language.ENG
-config[gc.PPN_TASK_IS_TEXT_FILE_FORMAT] = TextFileFormat.PLAIN
+# config[gc.PPN_TASK_LANGUAGE] = Language.ENG
+config[gc.PPN_TASK_IS_TEXT_FILE_FORMAT] = TextFileFormat.MPLAIN
 config[gc.PPN_TASK_OS_FILE_FORMAT] = SyncMapFormat.JSON
 task = Task()
-task.configuration = config
 
 
-def get_align(audio_file, text_file):
+def get_align(audio_file, text_file, lang):
+    if lang == 'FRA':
+        config[gc.PPN_TASK_LANGUAGE] = Language.FRA
+    elif lang == 'ARA':
+        config[gc.PPN_TASK_LANGUAGE] = Language.ARA
+    elif lang == 'DEU':
+        config[gc.PPN_TASK_LANGUAGE] = Language.DEU
+    elif lang == 'CMN':
+        config[gc.PPN_TASK_LANGUAGE] = Language.CMN
+    else:
+        config[gc.PPN_TASK_LANGUAGE] = Language.ENG
+    task.configuration = config
     task.audio_file_path_absolute = audio_file
     task.text_file_path_absolute = text_file
 
@@ -27,14 +37,14 @@ def get_align(audio_file, text_file):
     ExecuteTask(task).execute()
 
     # print produced sync map
-    result = {'result': []}
+    result = {'alignment': [], 'uri': ''}
     for fragment in task.sync_map_leaves():
         if fragment.text == '':
             continue
         text = fragment.text
         st_time = fragment.pretty_print.split('\t')[1]
         ed_time = fragment.pretty_print.split('\t')[2]
-        result['result'].append({'sentence': text, 'time': [float(st_time), float(ed_time)]})
-        print('{:50s} => {}'.format(fragment.text, fragment.interval))
+        result['alignment'].append({'sentence': text, 'time': [float(st_time), float(ed_time)]})
 
+    # print(result)
     return result
